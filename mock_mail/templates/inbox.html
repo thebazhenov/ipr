@@ -1,0 +1,45 @@
+<!-- inbox.html -->
+<html>
+  <body>
+    <h2>Inbox</h2>
+
+    <form method="get" action="/search">
+      <input type="text" name="q" placeholder="Search messages">
+      <button type="submit">Search</button>
+    </form>
+
+    <ul>
+      {% for msg in messages %}
+        <li>
+          {{ msg.message }}
+          {% if msg.receiver %}<br><small>To: {{ msg.receiver.email }}</small>{% endif %}
+          <form method="post" action="/delete/{{ msg.id }}" style="display:inline">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <h3>Send a Message to Yourself</h3>
+    <form method="post" action="/send">
+      <input name="message" placeholder="Your message">
+      <button type="submit">Send</button>
+    </form>
+
+    <h3>Send a Message to Another User</h3>
+    <form method="post" action="/send_to">
+      <input name="receiver_email" placeholder="Receiver email">
+      <input name="message" placeholder="Message">
+      <button type="submit">Send</button>
+    </form>
+
+    <form method="post" action="/delete_all">
+      <button type="submit" onclick="return confirm('Delete all messages?')">Delete All Messages</button>
+    </form>
+
+    <br>
+    <form method="get" action="/">
+      <button type="submit">Logout</button>
+    </form>
+  </body>
+</html>
