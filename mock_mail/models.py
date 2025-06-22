@@ -7,10 +7,10 @@ class User(db.Model):
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
 
-    # Входящие письма (user_id — это отправитель, значит user = автор письма)
+    # Входящие письма
     letters = db.relationship("Letter", backref="user", lazy=True, foreign_keys="Letter.user_id")
 
-    # Исходящие письма (если понадобится)
+    # Исходящие письма
     received_letters = db.relationship("Letter", foreign_keys="Letter.receiver_id", lazy=True)
 
 class Letter(db.Model):
