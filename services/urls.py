@@ -1,2 +1,2 @@
 API_URL = "http://82.142.167.37:4879"
-MAIL_URL = ""
+MAIL_URL = "http://127.0.0.1:8088"
